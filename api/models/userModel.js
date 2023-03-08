@@ -2,19 +2,19 @@ const con = require('../config')
 const {hash, compare, hashSync} = require('bcrypt');
 const userAuth = require('../middleware/userAuth');
 
-module.exports = class User {
+module.exports = {
   getUsers(req, res) {
     con.query("SELECT * FROM users", (err, result) => {
       if (err) throw err;
       res.send(result);
     });
-  }
+  },
   getUser(req, res) {
     con.query("SELECT * FROM users WHERE userID = ?;", [req.params.id], (err, result) => {
       if (err) throw err;
       res.send(result);
     });
-  }
+  },
   async createUser(req, res) {
     const userInfo = req.body;
     userInfo.pass = await hash(userInfo.pass, 15)
@@ -23,11 +23,10 @@ module.exports = class User {
         res.status(401)
         res.json({ err });
       } else {
-        res.status(200)
-        res.send({msg: "New user created"})
+        res.status(200).json({msg: "User Created Successfully"})
       }
     })
-  }
+  },
   async login(req, res) {
     const email = req.body.email
     const pass = req.body.pass
@@ -65,7 +64,7 @@ module.exports = class User {
         };
       }
     )
-  };
+  },
   async updateUser(req, res) {
     const userInfo = req.body
     if (userInfo.pass) {
@@ -75,7 +74,7 @@ module.exports = class User {
       if (err) throw err;
       res.send([req.body, {msg: "User updated successfully"}])
     })
-  };
+  },
   deleteUser(req, res) {
     con.query('DELETE FROM users WHERE userID = ?;', [req.params.id], (err) => {
       if (err) throw err;

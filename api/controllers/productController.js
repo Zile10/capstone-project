@@ -1,5 +1,4 @@
-const Product = require('../models/productModel')
-const product = new Product()
+const product = require('../models/productModel');
 
 module.exports = {
   getProducts(req, res) {
