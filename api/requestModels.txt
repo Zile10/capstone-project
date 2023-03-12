@@ -1,0 +1,12 @@
+POST User request: 
+{
+  "username": "",
+  "firstName": "",
+  "lastName": "",
+  "birthYear": ,
+  "genderID": ,
+  "contactNumber": "",
+  "email": "",
+  "pass": "",
+  "roleID": 3
+}

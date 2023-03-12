@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -20,7 +21,7 @@ app.use((req, res, next)=> {
 // Root Route
 app.get('/', (req, res) => {
   res.status(200);
-  res.sendFile(path.join(__dirname, './views/index.html'));
+  res.sendFile(path.join(__dirname, '/views/index.html'));
 })
 // Use router to handle product and user routes
 app.use('/users', userRoutes);
