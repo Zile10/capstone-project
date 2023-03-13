@@ -85,9 +85,7 @@ export default {
   border: 1px solid black;
   margin: auto;
 }
-.left{
 
-}
 .hero-banner .right {
   background-image: url(https://i.postimg.cc/g2wHdG7C/Robert-Greene-chessbg.webp);
   background-repeat: no-repeat;
