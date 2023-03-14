@@ -59,14 +59,14 @@ export default createStore({
     },
     async fetchProducts(context) {
       const res = await axios.get(`${apiUrl}products`);
-      const { results } = await res.data;
-      if (results) {
-        console.log(results);
-        context.commit("setProducts", results);
+      const data = await res.data;
+      // console.log(data);
+      if (data) {
+        context.commit("setProducts", data);
       }
     },
     async fetchProduct(context, id) {
-      const res = await axios.get(`${apiUrl}products`);
+      const res = await axios.get(`${apiUrl}product`);
       const data = await res.data
       context.commit("setProduct", data)
     },
@@ -78,10 +78,10 @@ export default createStore({
         context.commit("setProducts", results);
       }
     },
-    async fetchProduct(context, id) {
-      const res = await axios.get(`${apiUrl}products`);
+    async fetchUser(context, id) {
+      const res = await axios.get(`${apiUrl}user`);
       const data = await res.data
-      context.commit("setProduct", data)
+      context.commit("setUser", data)
     },
   },
   modules: {
