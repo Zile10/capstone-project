@@ -1,7 +1,7 @@
 <template>
-  <NavBar/>
+  <NavBar v-if="!atLoginRegister"/>
   <router-view/>
-  <FooterVue/>
+  <FooterVue v-if="!atLoginRegister"/>
 </template>
 
 <script>
@@ -11,6 +11,11 @@ export default {
   components: {
     NavBar,
     FooterVue
+  },
+  computed: {
+    atLoginRegister() {
+      return (this.$router.name === "login" || this.$route.name === "register")
+    }
   }
 }
 </script>
@@ -35,5 +40,12 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+
+body {
+  background-image: url(https://i.postimg.cc/vTbTpzfn/earth-globe-rotating-plexus.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 50%;
 }
 </style>
