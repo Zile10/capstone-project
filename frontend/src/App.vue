@@ -47,5 +47,6 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;
+  background-attachment: fixed;
 }
 </style>

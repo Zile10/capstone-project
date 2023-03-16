@@ -9,7 +9,7 @@ export default createStore({
     user: null,
     users: null,
     posts: null,
-    showSpinner: null,
+    showSpinner: true,
     message: null
   },
   getters: {
@@ -61,9 +61,10 @@ export default createStore({
       const res = await axios.get(`${apiUrl}products`);
       const data = await res.data;
       // console.log(data);
-      if (data) {
+      if (data !== undefined) {
         context.commit("setProducts", data);
-      }
+        context.commit("setSpinner", false)
+      } else context.commit("setSpinner", true);
     },
     async fetchProduct(context, id) {
       const res = await axios.get(`${apiUrl}product`);

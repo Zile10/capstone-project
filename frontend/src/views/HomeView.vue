@@ -8,7 +8,6 @@
         <div class="btns d-flex justify-content-between">
           <button type="button" class="btn btn-dark rounded-0 bg-black text-white">Register for Free</button>
           <button type="button" class="btn btn-light border-dark rounded-0 px-5">Login</button>
-
         </div>
       </div>
       <div class="right">

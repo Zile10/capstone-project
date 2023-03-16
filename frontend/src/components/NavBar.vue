@@ -20,10 +20,14 @@
             <router-link to="/register" class="nav-link">Register</router-link>
           </li>
         </ul>
-        <form class="d-flex" role="search">
+        <form class="d-flex" role="search" v-if="false">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
+        <div class="btns" v-else>
+          <button type="button" class="btn btn-dark rounded-0 bg-black text-white">Register for Free</button>
+          <button type="button" class="btn btn-light border-dark rounded-0 px-4 m-2">Login</button>
+        </div>
       </div>
     </div>
   </nav>
