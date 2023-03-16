@@ -2,7 +2,7 @@
   <div class="register">
     <form class="register-form">
       <h2>Register</h2>
-      <div class="mb-3">
+      <div class="mb-2">
         <!-- <label for="inputFirstName" class="form-label">First Name</label> -->
         <input
           type="text"
@@ -12,7 +12,17 @@
         />
       </div>
 
-      <div class="mb-3">
+      <div class="mb-2">
+        <!-- <label for="inputFirstName" class="form-label">First Name</label> -->
+        <input
+          type="text"
+          class="form-control"
+          id="inputFirstName"
+          placeholder="Phone Number"
+        />
+      </div>
+
+      <div class="mb-2">
         <!-- <label for="inputLastName" class="form-label">Last Name</label> -->
         <input
           type="text"
@@ -22,7 +32,7 @@
         />
       </div>
 
-      <div class="mb-3">
+      <div class="mb-2">
         <!-- <label for="inputUsername" class="form-label">Username</label> -->
         <input
           type="text"
@@ -36,12 +46,12 @@
         </div>
       </div>
 
-      <div class="mb-3">
+      <div class="mb-2">
         <!-- <label for="inputEmail1" class="form-label">Email address</label> -->
         <input
           type="email"
           class="form-control"
-          id="exampleInputEmail1"
+          id="inputEmail1"
           aria-describedby="emailHelp"
           placeholder="Email Adress"
         />
@@ -50,15 +60,24 @@
         </div>
       </div>
 
-      <div class="mb-3">
+      <div class="mb-2">
         <!-- <label for="inputPassword1" class="form-label">Password</label> -->
         <input
           type="password"
           class="form-control"
-          id="exampleInputPassword1"
+          id="inputPassword1"
           placeholder="password"
         />
       </div>
+
+      <div class="mb-2">
+        <input 
+          type="date"
+          class="form-control"
+          id="inputDOB"
+          placeholder="Date of birth"
+        >
+      </div>  
 
       <!-- <div class="mb-3 form-check">
         <input type="checkbox" class="form-check-input" id="exampleCheck1" />
