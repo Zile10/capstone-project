@@ -9,7 +9,7 @@
           id="inputFirstName"
           placeholder="First Name"
           required
-          v-bind="firstName"
+          v-bind="payload.firstName"
         />
       </div>
 
@@ -20,7 +20,7 @@
         id="inputLastName"
         placeholder="Last Name"
         required
-        v-bind="lastName"
+        v-bind="payload.lastName"
         />
       </div>
 
@@ -32,7 +32,7 @@
           aria-describedby="usernameHelp"
           placeholder="Username"
           required
-          v-bind="username"
+          v-bind="payload.username"
         />
         <div id="usernameHelp" class="form-text">
           This is the name that other users will see.
@@ -46,7 +46,7 @@
           id="inputContactNumber"
           placeholder="Phone Number"
           required
-          v-bind="contactNumber"
+          v-bind="payload.contactNumber"
         />
       </div>
 
@@ -58,7 +58,7 @@
           aria-describedby="emailHelp"
           placeholder="Email Address"
           required
-          v-bind="email"
+          v-bind="payload.email"
         />
         <div id="emailHelp" class="form-text">
           We'll never share your email with anyone else.
@@ -72,7 +72,7 @@
           id="inputPassword1"
           placeholder="password"
           required
-          v-bind="pass"
+          v-bind="payload.pass"
         />
       </div>
 
@@ -83,12 +83,12 @@
           id="inputDOB"
           placeholder="Date of birth"
           required
-          v-bind="DOB"
+          v-bind="payload.DOB"
         />
       </div>
 
       <div class="mb-2">
-        <select id="inputGender" required v-bind="genderID">
+        <select id="inputGender" required v-bind="payload.genderID">
           <option value="" selected disabled hidden>Select gender</option>
           <option value="1">Male</option>
           <option value="2">Female</option>
