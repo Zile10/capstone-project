@@ -49,7 +49,7 @@ export default createStore({
       }
     },
     async register(context, payload) {
-      let res = await axios.post(`${apiUrl}register`, payload)
+      let res = await axios.post(`${apiUrl}users`, payload)
       let { msg, err } = await res.data;
       if (msg) {
         context.commit("setMessage", msg);

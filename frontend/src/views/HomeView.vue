@@ -1,5 +1,4 @@
 <template>
-  <NavBar/>
   <div class="home">
     <div class="hero-banner">
       <div class="left text-start d-flex flex-column justify-content-evenly">

@@ -25,8 +25,8 @@
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
         <div class="btns" v-else>
-          <button type="button" class="btn btn-dark rounded-0 bg-black text-white">Register for Free</button>
-          <button type="button" class="btn btn-light border-dark rounded-0 px-4 m-2">Login</button>
+          <button type="button" class="btn btn-dark rounded-0 bg-black text-white" @click="toRegister">Register for Free</button>
+          <button type="button" class="btn btn-light border-dark rounded-0 px-4 m-2" @click="toLogin">Login</button>
         </div>
       </div>
     </div>
@@ -40,7 +40,14 @@
 </template>
 <script>
 export default {
-  
+  methods: {
+    toRegister(){
+      this.$router.push("/register");
+    },
+    toLogin(){
+      this.$router.push("/login");
+    }
+  },
 }
 </script>
 <style scoped>

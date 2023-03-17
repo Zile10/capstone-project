@@ -1,6 +1,7 @@
 <template>
   <div class="register">
-    <form class="register-form">
+    <SpinnerVue v-if="showSpinner"/>
+    <form class="register-form" @submit.prevent="registerUser" v-else>
       <h2>Register</h2>
       <div class="mb-2">
         <input
@@ -9,7 +10,7 @@
           id="inputFirstName"
           placeholder="First Name"
           required
-          v-bind="payload.firstName"
+          v-model="payload.firstName"
         />
       </div>
 
@@ -20,7 +21,7 @@
         id="inputLastName"
         placeholder="Last Name"
         required
-        v-bind="payload.lastName"
+        v-model="payload.lastName"
         />
       </div>
 
@@ -32,7 +33,7 @@
           aria-describedby="usernameHelp"
           placeholder="Username"
           required
-          v-bind="payload.username"
+          v-model="payload.username"
         />
         <div id="usernameHelp" class="form-text">
           This is the name that other users will see.
@@ -46,7 +47,7 @@
           id="inputContactNumber"
           placeholder="Phone Number"
           required
-          v-bind="payload.contactNumber"
+          v-model="payload.contactNumber"
         />
       </div>
 
@@ -58,7 +59,7 @@
           aria-describedby="emailHelp"
           placeholder="Email Address"
           required
-          v-bind="payload.email"
+          v-model="payload.email"
         />
         <div id="emailHelp" class="form-text">
           We'll never share your email with anyone else.
@@ -72,7 +73,7 @@
           id="inputPassword1"
           placeholder="password"
           required
-          v-bind="payload.pass"
+          v-model="payload.pass"
         />
       </div>
 
@@ -83,12 +84,12 @@
           id="inputDOB"
           placeholder="Date of birth"
           required
-          v-bind="payload.DOB"
+          v-model="payload.DOB"
         />
       </div>
 
       <div class="mb-2">
-        <select id="inputGender" required v-bind="payload.genderID">
+        <select id="inputGender" required v-model="payload.genderID">
           <option value="" selected disabled hidden>Select gender</option>
           <option value="1">Male</option>
           <option value="2">Female</option>
@@ -96,17 +97,17 @@
         </select>
       </div>
 
-      <!-- <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-      </div> -->
-
-      <button @click.prevent="toHome" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
 </template>
+
 <script>
+import SpinnerVue from "@/components/SpinnerVue.vue";
 export default {
+  components: {
+    SpinnerVue
+  },
   data() {
     return {
       payload: {
@@ -122,12 +123,21 @@ export default {
     }
   },
   methods: {
-    async toHome() {
-      await this.$store.dispatch('register', this.payload) 
+    async registerUser() {
+      await this.$store.commit('setSpinner', true)
+      await this.$store.dispatch('register', this.payload)
       await this.$store.dispatch('fetchUsers')
       this.$router.push("/");
     },
   },
+  mounted(){
+    this.$store.commit('setSpinner', false)
+  },
+  computed: {
+    showSpinner() {
+      return this.$store.state.showSpinner
+    }
+  }
 };
 </script>
 <style>

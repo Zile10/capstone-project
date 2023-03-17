@@ -14,7 +14,7 @@ export default {
   },
   computed: {
     atLoginRegister() {
-      return (this.$router.name === "login" || this.$route.name === "register")
+      return (this.$route.name === "login" || this.$route.name === "register")
     }
   }
 }
