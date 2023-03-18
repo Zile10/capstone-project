@@ -1,39 +1,41 @@
 <template>
   <div class="login">
     <SpinnerVue v-if="showSpinner"/>
-    <form class="login-form" @submit.prevent="login" v-else>
-      <button @click="history.back()" class="back-btn">
+    <div v-else>
+      <button onclick="history.back()" class="back-btn">
         <img src="https://img.icons8.com/fluency-systems-filled/48/FFFFFF/long-arrow-left.png"/>
       </button>
-      <h2>Login</h2>
-      <div class="mb-2">
-        <input
-          type="email"
-          class="form-control"
-          id="inputEmail1"
-          aria-describedby="emailHelp"
-          placeholder="Email Address"
-          required
-          v-model="payload.email"
-        />
-        <div id="emailHelp" class="form-text">
-          We'll never share your email with anyone else.
+      <form class="login-form" @submit.prevent="login">
+        <h2>Login</h2>
+        <div class="mb-2">
+          <input
+            type="email"
+            class="form-control"
+            id="inputEmail1"
+            aria-describedby="emailHelp"
+            placeholder="Email Address"
+            required
+            v-model="payload.email"
+          />
+          <div id="emailHelp" class="form-text">
+            We'll never share your email with anyone else.
+          </div>
         </div>
-      </div>
-
-      <div class="mb-2">
-        <input
-          type="password"
-          class="form-control"
-          id="inputPassword1"
-          placeholder="password"
-          required
-          v-model="payload.pass"
-        />
-      </div>
-
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+  
+        <div class="mb-2">
+          <input
+            type="password"
+            class="form-control"
+            id="inputPassword1"
+            placeholder="password"
+            required
+            v-model="payload.pass"
+          />
+        </div>
+  
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
   </div>
 
 </template>
@@ -58,6 +60,7 @@ export default {
       await this.$store.commit('setSpinner', true)
       await this.$store.dispatch('login', this.payload)
       await this.$store.dispatch('fetchUsers')
+      // console.log(this.$store.state.user);
       this.$router.push("/");
     }
   },

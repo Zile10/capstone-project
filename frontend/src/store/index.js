@@ -1,6 +1,9 @@
 import { createStore } from 'vuex';
+import {useCookies} from 'vue3-cookies'
 import axios from "axios";
 const apiUrl = "https://capstone-project-u8gz.onrender.com/"
+const {cookies} = useCookies();
+
 
 export default createStore({
   state: {
@@ -39,11 +42,14 @@ export default createStore({
   },
   actions: {
     async login(context, payload) {
-      const res = await axios.post(`${apiUrl}login`, payload);
+      const res = await axios.post(`${apiUrl}users/login`, payload);
       const {result, err} = await res.data;
 
       if (result) {
         context.commit("setUser", result)
+        // cookies.set("", value or a token, expire times, it data type can be a string, number or date)
+        // cookies.get(cookie_name)
+        // cookies.remove(cookie_name)
       } else {
         context.commit("setMessage", err)
       }
