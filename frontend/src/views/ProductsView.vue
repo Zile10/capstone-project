@@ -6,8 +6,8 @@
         <img :src="product.imgURL" class="card-img-top" :alt="product.prodName">
         <div class="card-body">
           <h5 class="card-title">{{product.prodName}}</h5>
-          <p class="card-text">Author: {{product.author}}</p>
-          <p class="card-text">Price: R{{product.price}}</p>
+          <p class="card-text my-0">Author: {{product.author}}</p>
+          <p class="card-text my-0">Price: R{{product.price}}</p>
           <router-link to="">See more ></router-link>
           <!-- <a href="#" class="btn btn-primary">View Product</a> -->
         </div>
@@ -21,6 +21,17 @@ import SpinnerVue from '@/components/SpinnerVue.vue'
 export default {
   components: {
     SpinnerVue
+  },
+  methods: {
+    filterItems(products) {
+      let filteredByPrice = products.filter(item => item.price < priceRange.value || priceRange.value == 'any')
+      let filteredByColor = products.filter(item => item.color == baseColor.value || baseColor.value == 'any')
+      let filteredByGender = products.filter(item => item.gender == gender.value || gender.value == 'any')
+
+      let finalResult = filteredByPrice.filter(item => filteredByColor.includes(item) && filteredByGender.includes(item))
+
+      loadProductCards(finalResult)
+    }
   },
   computed: {
     products() {

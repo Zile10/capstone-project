@@ -2,6 +2,9 @@
   <div class="register">
     <SpinnerVue v-if="showSpinner"/>
     <form class="register-form" @submit.prevent="registerUser" v-else>
+      <button onclick="history.back()" class="back-btn">
+        <img src="https://img.icons8.com/fluency-systems-filled/48/FFFFFF/long-arrow-left.png"/>
+      </button>
       <h2>Register</h2>
       <div class="mb-2">
         <input
@@ -168,5 +171,11 @@ input, select, option {
   height: 40px;
   border-radius: .375rem;
   border: 2px solid #444;
+}
+
+.back-btn {
+  background-color: rgba(255, 255, 255, 0.6);
+  border: none;
+  border-radius: 5px;
 }
 </style>

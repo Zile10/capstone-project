@@ -5,12 +5,72 @@
         <h1>Strategise to <br>Reach Your Life <br>Objectives</h1>
         <p>Stratagem will provide you with the community and the resources you'll need to take control of your life and plan your way to success!</p>
         <div class="btns d-flex justify-content-between">
-          <button type="button" class="btn btn-dark rounded-0 bg-black text-white">Register for Free</button>
-          <button type="button" class="btn btn-light border-dark rounded-0 px-5">Login</button>
+          <button type="button" class="btn btn-dark rounded-0 bg-black text-white" @click="toRegister">Register for Free</button>
+          <button type="button" class="btn btn-light border-dark rounded-0 px-5" @click="toLogin">Login</button>
         </div>
       </div>
       <div class="right">
-        <!-- <img src="https://i.postimg.cc/ZKfW0vgW/Robert-Greene-chessbg.webp" alt=""> -->
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+        <div class="hologram-line"></div>
+
+
       </div>
     </div>
 
@@ -42,6 +102,14 @@ export default {
   name: 'HomeView',
   components: {
     Carousel
+  },
+  methods: {
+    toRegister(){
+      this.$router.push("/register");
+    },
+    toLogin(){
+      this.$router.push("/login");
+    }
   },
   data() {
     return {
@@ -91,6 +159,19 @@ export default {
   background-image: url(https://i.postimg.cc/g2wHdG7C/Robert-Greene-chessbg.webp);
   background-repeat: no-repeat;
   background-size: cover;
+  overflow-y: hidden;
+  overflow-x: visible !important;
+  /* -webkit-overflow-scrolling: ; */
+  border-radius: 100px !important;
+}
+
+.hologram-line {
+  width: 100%;
+  height: 1px;
+  /* padding-left: 2px; */
+  background-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 6px 1px rgba(0, 255, 255, 1);
+  margin-bottom: 10px;
 }
 
 .daily-book {

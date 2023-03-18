@@ -6,7 +6,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav mx-auto mb-2 ps-5 mb-lg-0">
           <li class="nav-item">
             <router-link to="/" class="nav-link">Home</router-link>
           </li>
@@ -15,9 +15,6 @@
           </li>
           <li class="nav-item">
             <router-link to="/products" class="nav-link">Products</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/register" class="nav-link">Register</router-link>
           </li>
         </ul>
         <form class="d-flex" role="search" v-if="false">
@@ -31,12 +28,7 @@
       </div>
     </div>
   </nav>
-  <hr noshade>
-
-  <!-- <nav class="text-dark">
-    <router-link to="/testimonials">Testimonials</router-link> |
-    <router-link to="/contact">Contact</router-link>
-  </nav> -->
+  <hr>
 </template>
 <script>
 export default {

@@ -1,7 +1,10 @@
 <template>
   <div class="login">
     <SpinnerVue v-if="showSpinner"/>
-    <form class="register-form" @submit.prevent="login" v-else>
+    <form class="login-form" @submit.prevent="login" v-else>
+      <button @click="history.back()" class="back-btn">
+        <img src="https://img.icons8.com/fluency-systems-filled/48/FFFFFF/long-arrow-left.png"/>
+      </button>
       <h2>Login</h2>
       <div class="mb-2">
         <input
@@ -98,4 +101,9 @@ input, select, option {
   border: 2px solid #444;
 }
 
+.back-btn {
+  background-color: rgba(255, 255, 255, 0.6);
+  border: none;
+  border-radius: 5px;
+}
 </style>
