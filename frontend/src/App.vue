@@ -1,6 +1,8 @@
 <template>
   <NavBar v-if="!atLoginRegister"/>
-  <router-view/>
+  <main>
+    <router-view/>
+  </main>
   <FooterVue v-if="!atLoginRegister"/>
 </template>
 
@@ -27,6 +29,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100vh;
+  
 }
 
 nav {
@@ -41,12 +45,15 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
-
+main {
+  min-height: 60vh;
+}
 body {
   background-image: url(https://i.postimg.cc/vTbTpzfn/earth-globe-rotating-plexus.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;
   background-attachment: fixed;
+  min-height: 100vh;
 }
 </style>

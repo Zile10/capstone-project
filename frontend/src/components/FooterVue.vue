@@ -1,5 +1,4 @@
 <template lang="">
-  <div>
     <footer class="bg-dark text-light">
       <div class="footer d-block flex-column">
 
@@ -34,7 +33,6 @@
         </div>
       </div>
     </footer>
-  </div>
 </template>
 <script>
 export default {
@@ -45,11 +43,12 @@ export default {
   footer {
     box-shadow: 0 0 6px 4px black;
     z-index: 20;
-    min-height: var(--navHeight);
-    top: 0;
+    position: inherit;
+    bottom: 0;
     padding: 15px;
     text-align: center;
     word-wrap: break-word;
+    width: 100%;
   }
 
   footer .info p {

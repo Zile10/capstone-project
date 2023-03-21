@@ -35,6 +35,7 @@ export default {
   },
   computed: {
     products() {
+      if(this.$store.state.products) this.$store.commit("setSpinner", false)
       return this.$store.state.products
     },
     showSpinner() {

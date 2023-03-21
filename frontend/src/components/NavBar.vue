@@ -1,7 +1,13 @@
 <template>
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Stratagem</a>
+      <router-link to="/" class="navbar-brand d-flex">
+        STRATA<span style="color: red;">GEM</span>
+        <div class="logo-square square-1"></div>
+        <div class="logo-square square-2"></div>
+        <div class="logo-square square-3"></div>
+        <!-- <div class="logo-square square-4"></div> -->
+      </router-link>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -45,9 +51,42 @@ export default {
 <style scoped>
   nav {
     margin: 0 30px;
+    /* font-family: 'Courier Prime'; */
+
   }
   nav ul li a, nav div a {
     color: #fff !important;
+  }
+  .logo-square{
+    width: 30px;
+    height: 30px;
+    /* background-color: red; */
+    position: relative;
+    box-sizing: border-box;
+    translate: 15px;
+    scale: 1.2;
+    opacity: 0.72;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+  /* .square-1{
+    left: 10px;
+    background-color: red;
+  } */
+  .square-1 {
+    left: 10px;
+    rotate: -30deg;
+    background-color: #A60000;
+  }
+  .square-2 {
+    left: -20px;
+    rotate: 30deg;
+    background-color: #EE3434/*rgb(255, 62, 94)*/;
+  }
+  .square-3 {
+    left: -50px;
+    rotate: 0deg;
+    background-color: #F61717;
   }
   hr {
     height: 1px;

@@ -12,8 +12,9 @@ export default createStore({
     user: null,
     users: null,
     posts: null,
+    token: null,
+    message: null,
     showSpinner: true,
-    message: null
   },
   getters: {
   },
@@ -36,6 +37,9 @@ export default createStore({
     setPosts(state, data) {
       state.posts = data
     },
+    setToken(state, data) {
+      state.token = data
+    },
     setMessage(state, data) {
       state.message = data
     }
@@ -43,15 +47,14 @@ export default createStore({
   actions: {
     async login(context, payload) {
       const res = await axios.post(`${apiUrl}users/login`, payload);
-      const {result, err} = await res.data;
-
-      if (result) {
-        context.commit("setUser", result)
-        // cookies.set("", value or a token, expire times, it data type can be a string, number or date)
-        // cookies.get(cookie_name)
-        // cookies.remove(cookie_name)
+      const {result, jwToken, msg, err} = await res.data;
+      if(result) {
+        context.commit('setUser',result);
+        context.commit('setToken', jwToken);
+        cookies.set('login_cookie', jwToken)
+        context.commit('setMessage', msg)
       } else {
-        context.commit("setMessage", err)
+        context.commit('setMessage', err);
       }
     },
     async register(context, payload) {
@@ -63,32 +66,29 @@ export default createStore({
         context.commit("setMessage", err)
       }
     },
-    async fetchProducts(context) {
-      const res = await axios.get(`${apiUrl}products`);
-      const data = await res.data;
-      // console.log(data);
-      if (data !== undefined) {
-        context.commit("setProducts", data);
-        context.commit("setSpinner", false)
-      } else context.commit("setSpinner", true);
-    },
     async fetchProduct(context, id) {
       const res = await axios.get(`${apiUrl}product`);
       const data = await res.data
       context.commit("setProduct", data)
     },
-    async fetchUsers(context) {
-      const res = await axios.get(`${apiUrl}users`);
-      const { results } = await res.data;
-      if (results) {
-        // console.log(results);
-        context.commit("setProducts", results);
-      }
+    async fetchProducts(context) {
+      const res = await axios.get(`${apiUrl}products`);
+      const data = await res.data;
+      if (data !== undefined) {
+        context.commit("setProducts", data);
+      } else context.commit("setSpinner", true);
     },
     async fetchUser(context, id) {
       const res = await axios.get(`${apiUrl}user`);
       const data = await res.data
       context.commit("setUser", data)
+    },
+    async fetchUsers(context) {
+      const res = await axios.get(`${apiUrl}users`);
+      const data = await res.data;
+      if (data !== undefined) {
+        context.commit("setUsers", data);
+      } else context.commit("setSpinner", true);
     },
   },
   modules: {
