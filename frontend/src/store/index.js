@@ -1,9 +1,12 @@
 import { createStore } from 'vuex';
-import {useCookies} from 'vue3-cookies'
+import {useCookies, globalCookiesConfig} from 'vue3-cookies'
 import axios from "axios";
 const apiUrl = "https://capstone-project-u8gz.onrender.com/"
 const {cookies} = useCookies();
 
+globalCookiesConfig({
+  expireTimes: "1h",
+});
 
 export default createStore({
   state: {

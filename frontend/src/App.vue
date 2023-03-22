@@ -12,30 +12,26 @@ import NavBar from '@/components/NavBar.vue'
 import FooterVue from '@/components/FooterVue.vue' 
 
 export default {
-  data() {
-    return {
-      
-    }
-  },
   components: {
     NavBar,
     FooterVue
   },
   created() {
     let {cookies} = useCookies();
+    if (!this.$store.state.user) {
+      this.$store.commit('setUser', cookies.get("login_cookie").result)
+    }
   },
   computed: {
     atLoginRegister() {
       return (this.$route.name === "login" || this.$route.name === "register")
     },
+    user(){
+      return this.$store.state.user
+    },
     userCookie(){
       let loginCookie = cookies.get("login_cookie");
       return loginCookie
-    },
-    user(){
-      if (this.$store.state.user) {
-        return this.$store.state.user
-      }
     },
   }
 }

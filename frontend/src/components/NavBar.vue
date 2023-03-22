@@ -24,7 +24,7 @@
           </li>
         </ul>
         <form class="d-flex" role="search" v-if="user">
-          <img src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/48/FFFFFF/external-user-social-media-ui-tanah-basah-basic-outline-tanah-basah.png"/>
+          <img src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/24/FFFFFF/external-user-social-media-ui-tanah-basah-basic-outline-tanah-basah.png"/>
           {{ user.username }}
         </form>
         <div class="btns" v-else>
