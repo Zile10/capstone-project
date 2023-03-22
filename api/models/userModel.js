@@ -18,12 +18,14 @@ module.exports = {
   async createUser(req, res) {
     const userInfo = req.body;
     userInfo.pass = await hash(userInfo.pass, 15)
-    con.query("INSERT INTO users SET ?;", [userInfo], (err) => {
+    con.query("INSERT INTO users SET ?;", [userInfo], (err, result) => {
       if (err) {
         res.status(401)
         res.json({ err });
+        console.log(err);
       } else {
         res.status(200).json({msg: "User Created Successfully"})
+        console.log(result);
       }
     })
   },
@@ -32,7 +34,7 @@ module.exports = {
     const pass = req.body.pass
 
     con.query(
-      `SELECT firstName, lastName, email, pass, userRole FROM users WHERE email = '${email}';`,
+      `SELECT userID, username, firstName, lastName, DOB, gender, contactNumber, email, pass, profileURL, bannerURL, userDesc, userRole, joinDate WHERE email = '${email}';`,
       async (err, loginData) => {
         if (err) throw err;
         if (loginData == null || !loginData.length) {
