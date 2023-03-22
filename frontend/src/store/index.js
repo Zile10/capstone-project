@@ -13,6 +13,7 @@ export default createStore({
     users: null,
     posts: null,
     token: null,
+    isVerified: false,
     message: null,
     showSpinner: true,
   },
@@ -42,6 +43,9 @@ export default createStore({
     },
     setMessage(state, data) {
       state.message = data
+    },
+    setVerified(state, data) {
+      state.isVerified = data
     }
   },
   actions: {

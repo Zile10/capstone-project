@@ -23,9 +23,9 @@
             <router-link to="/products" class="nav-link">Products</router-link>
           </li>
         </ul>
-        <form class="d-flex" role="search" v-if="false">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+        <form class="d-flex" role="search" v-if="user">
+          <img src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/48/FFFFFF/external-user-social-media-ui-tanah-basah-basic-outline-tanah-basah.png"/>
+          {{ user.username }}
         </form>
         <div class="btns" v-else>
           <button type="button" class="btn btn-dark rounded-0 bg-black text-white" @click="toRegister">Register for Free</button>
@@ -46,6 +46,11 @@ export default {
       this.$router.push("/login");
     }
   },
+  computed: {
+    user(){
+      return this.$store.state.user
+    },
+  }
 }
 </script>
 <style scoped>

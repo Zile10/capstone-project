@@ -32,11 +32,11 @@ export default {
       let loginCookie = cookies.get("login_cookie");
       return loginCookie
     },
-    // verifyUser(){
-    //   if (this.userCookie.result == this.$store.state.user) {
-    //     console.log('true');
-    //   } else console.log('false');
-    // }
+    user(){
+      if (this.$store.state.user) {
+        return this.$store.state.user
+      }
+    },
   }
 }
 </script>
