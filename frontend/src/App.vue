@@ -10,6 +10,7 @@
 import {useCookies} from 'vue3-cookies'
 import NavBar from '@/components/NavBar.vue' 
 import FooterVue from '@/components/FooterVue.vue' 
+
 export default {
   data() {
     return {
@@ -22,14 +23,20 @@ export default {
   },
   created() {
     let {cookies} = useCookies();
-    let loginCookie = cookies.get("login_cookie");
-    console.log(loginCookie);
-    // this.cookies.set("myCoookie", "abcdefg");
   },
   computed: {
     atLoginRegister() {
       return (this.$route.name === "login" || this.$route.name === "register")
-    }
+    },
+    userCookie(){
+      let loginCookie = cookies.get("login_cookie");
+      return loginCookie
+    },
+    // verifyUser(){
+    //   if (this.userCookie.result == this.$store.state.user) {
+    //     console.log('true');
+    //   } else console.log('false');
+    // }
   }
 }
 </script>
