@@ -7,12 +7,24 @@
 </template>
 
 <script>
+import {useCookies} from 'vue3-cookies'
 import NavBar from '@/components/NavBar.vue' 
 import FooterVue from '@/components/FooterVue.vue' 
 export default {
+  data() {
+    return {
+      
+    }
+  },
   components: {
     NavBar,
     FooterVue
+  },
+  created() {
+    let {cookies} = useCookies();
+    let loginCookie = cookies.get("login_cookie");
+    console.log(loginCookie);
+    // this.cookies.set("myCoookie", "abcdefg");
   },
   computed: {
     atLoginRegister() {

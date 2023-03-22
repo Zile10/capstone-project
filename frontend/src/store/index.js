@@ -51,7 +51,7 @@ export default createStore({
       if(result) {
         context.commit('setUser',result);
         context.commit('setToken', jwToken);
-        cookies.set('login_cookie', jwToken)
+        cookies.set('login_cookie', res.data)
         context.commit('setMessage', msg)
       } else {
         context.commit('setMessage', err);
