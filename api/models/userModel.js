@@ -34,7 +34,7 @@ module.exports = {
     const pass = req.body.pass
 
     con.query(
-      `SELECT userID, username, firstName, lastName, DOB, gender, contactNumber, email, pass, profileURL, bannerURL, userDesc, userRole, joinDate WHERE email = '${email}';`,
+      `SELECT userID, username, firstName, lastName, DOB, gender, contactNumber, email, pass, profileURL, bannerURL, userDesc, userRole, joinDate FROM userData WHERE email = '${email}';`,
       async (err, loginData) => {
         if (err) throw err;
         if (loginData == null || !loginData.length) {
