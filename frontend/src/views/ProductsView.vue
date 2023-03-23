@@ -1,9 +1,9 @@
 <template>
-  <SpinnerVue v-if="showSpinner"/>
-  <div class="content" v-else>
+  <div class="filter-bar">
     <form class="d-flex" role="search">
       <div>
-        <select id="filterCategory" required v-model="category">
+        <label for="filterCategory" class="me-2">Category</label>
+        <select id="filterCategory" name="filterCategory" required v-model="category">
           <option value="" selected>Any</option>
           <option value="chess">Chess</option>
           <option value="coding">Coding</option>
@@ -11,27 +11,33 @@
         </select>
       </div>
       <div>
-        <select id="filterPrice" required v-model="price">
+        <label for="filterPrice" class="me-2">Price</label>
+        <select id="filterPrice" name="filterPrice" required v-model="price">
           <option value="" selected>Any</option>
           <option value="500">Under R500</option>
           <option value="300">Under R300</option>
         </select>
       </div>
       <div>
-        <label for="author">Author</label>
+        <label for="author" class="me-2">Author</label>
         <input type="text" name="author" v-model="author">
       </div>
       <div class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="search">
+        <img src="https://img.icons8.com/metro/26/FFFFFF/search.png" class="me-2" style="scale: 0.8;"/>
       </div>
     </form>
+  </div>
+  <SpinnerVue v-if="showSpinner"/>
+  <div class="content" v-else>
+
     <div class="row products-container">
   
       <div v-for="product in filterItems" :key="product" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5">
         <div class="card m-auto">
           <img :src="product.imgURL" class="card-img-top" :alt="product.prodName">
           <div class="card-body">
-            <h5 class="card-title">{{product.prodName}}</h5>
+            <h5 class="card-title">{{product.prodName.slice(0, 27)}} ...</h5>
             <p class="card-text my-0">Author: {{product.author}}</p>
             <p class="card-text my-0">Price: R{{product.price}}</p>
             <router-link to="">See more ></router-link>
@@ -58,11 +64,6 @@ export default {
       search: '',
       order: ''
     }
-  },
-  methods: {
-    // search() {
-
-    // }
   },
   computed: {
     products() {
@@ -102,11 +103,23 @@ export default {
 </script>
 
 <style scoped>
-  form {
+  div.filter-bar {
+    height: 300%;
     width: 100%;
+    position: absolute;
+  }
+  form {
+    margin: 0 auto;
+    width: 80%;
     display: flex;
     justify-content: space-evenly;
-    background-color: black;
+    background-color: #F61717;
+    position: sticky;
+    top: 60px;
+    color: white;
+    z-index: 5;
+    padding: 4px;
+    border-radius: 5px;
   }
   form div {
     height: 30px;
@@ -116,6 +129,7 @@ export default {
   }
   .products-container {
     margin: 20px auto;
+    padding-top: 60px;
     width: 80%;
   }
   .card {
@@ -124,17 +138,24 @@ export default {
     height: 400px;
     overflow: hidden;
     text-align: left;
+    color: #111;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(6px);
   }
-
   .card img {
     border-radius: 0;
     margin: auto;
     max-width: 220px;
     max-height: 230px;
   }
-
-  a {
+  .card h5 {
+    max-height: 50px;
+    overflow: hidden;
+  }
+  .card a {
     text-decoration: none;
+    color: #f61717;
   }
 
 

@@ -1,6 +1,6 @@
 <template>
   <SpinnerVue v-if="showSpinner"/>
-  <div v-else>
+  <div class="admin-container" v-else>
     <h2>Products</h2>
     <table class="table table-dark table-striped">
       <thead>
@@ -154,5 +154,13 @@ export default {
 };
 </script>
 <style>
-
+  .admin-container {
+    color: white;
+    margin-bottom: 30px;
+  }
+  .table {
+    width: 80%;
+    margin: auto;
+    background-color: transparent;
+  }
 </style>

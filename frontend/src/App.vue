@@ -18,7 +18,7 @@ export default {
   },
   created() {
     let {cookies} = useCookies();
-    if (!this.$store.state.user) {
+    if (cookies.get("login_cookie")) {
       this.$store.commit('setUser', cookies.get("login_cookie").result)
     }
   },
@@ -62,9 +62,11 @@ nav a.router-link-exact-active {
 }
 main {
   min-height: 60vh;
+  margin-top: 80px;
 }
 body {
-  background-image: url(https://i.postimg.cc/vTbTpzfn/earth-globe-rotating-plexus.jpg);
+  /* background-image: url(https://i.postimg.cc/vTbTpzfn/earth-globe-rotating-plexus.jpg); */
+  background-image: url(https://i.postimg.cc/8cfGb37m/DALL-E-2023-03-16-11-44-54-blue-space-images.png);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;

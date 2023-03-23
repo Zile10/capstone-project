@@ -5,7 +5,7 @@ const apiUrl = "https://capstone-project-u8gz.onrender.com/"
 const {cookies} = useCookies();
 
 globalCookiesConfig({
-  expireTimes: "1h",
+  expireTimes: "1d",
 });
 
 export default createStore({
