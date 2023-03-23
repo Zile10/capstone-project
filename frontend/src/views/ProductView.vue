@@ -2,7 +2,7 @@
   <div class="product-profile">
     <h1>Product Profile</h1>
     <div class="d-flex">
-      <div class="img"></div>
+      <div class="img" :style="'background-image: url(' + product.imgURL + ')'"></div>
       <div class="data">
         <div class="data-col d-flex justify-content-between">
           <p>name:</p> <p class="me-0 pe-0">{{ product.prodName }}</p>
@@ -27,7 +27,7 @@
     </div>
     <hr class="m-auto mt-0 mb-3" width="92%">
     <div class="d-flex">
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, magni laudantium iusto expedita eius repellendus, commodi similique quam, ut quia eveniet! Suscipit sed possimus, nesciunt ut praesentium natus quaerat est!</p><p>{{ product.description }}</p>
+      <p>{{ product.prodDesc }}</p>
     </div>
   </div>
 </template>
@@ -36,7 +36,7 @@
 export default {
   computed: {
     product() {
-      return this.$store.state.product || {prodName: 'prodName'}
+      return this.$store.state.product || {}
     }
   }
 }
@@ -55,6 +55,7 @@ export default {
     font-family: 'Courier Prime';
     box-shadow: /* 5px -5px 5px -4px black, */ -1px 1px 0px white, 1px -1px 0px white, -2px 2px 5px cyan, 2px -2px 5px cyan;
     background: linear-gradient(135deg, transparent 45deg, rgba(0, 0, 0, 0.5) 0);
+    overflow: hidden;
   }
   /* .product-profile:before {
     content: '';
@@ -75,6 +76,8 @@ export default {
     border: 1px solid white;
     margin: 40px;
     margin-bottom: 20px;
+    background-size: cover;
+    background-position: 50% 50%;
   }
   .data {
     width: 100%;

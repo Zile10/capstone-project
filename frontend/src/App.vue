@@ -61,7 +61,8 @@ nav a.router-link-exact-active {
   color: #42b983;
 }
 main {
-  min-height: 60vh;
+  min-height: 100%;
+  /* height: 100%; */
   margin-top: 80px;
 }
 body {

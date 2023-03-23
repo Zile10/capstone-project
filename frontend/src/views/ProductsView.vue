@@ -28,19 +28,23 @@
       </div>
     </form>
   </div>
+  <br>
   <SpinnerVue v-if="showSpinner"/>
   <div class="content" v-else>
 
     <div class="row products-container">
   
-      <div v-for="product in filterItems" :key="product" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5">
+      <div v-for="product in filterItems" :key="product.prodID" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-5">
         <div class="card m-auto">
           <img :src="product.imgURL" class="card-img-top" :alt="product.prodName">
           <div class="card-body">
             <h5 class="card-title">{{product.prodName.slice(0, 27)}} ...</h5>
             <p class="card-text my-0">Author: {{product.author}}</p>
             <p class="card-text my-0">Price: R{{product.price}}</p>
-            <router-link to="">See more ></router-link>
+            <router-link to="product" @click.prevent="()=>viewProduct(product)">See more ></router-link>
+            <a @click.prevent="()=>addToCart(product)" class="ms-5">
+              <img src="https://img.icons8.com/external-anggara-detail-outline-anggara-putra/48/FFFFFF/external-add-to-cart-retail-anggara-detail-outline-anggara-putra-2.png" width="30"/>
+            </a>
             <!-- <a href="#" class="btn btn-primary">View Product</a> -->
           </div>
         </div>
@@ -63,6 +67,15 @@ export default {
       author: '',
       search: '',
       order: ''
+    }
+  },
+  methods: {
+    viewProduct(product) {
+      this.$store.commit('setProduct', product);
+      this.$router.push("/product");
+    },
+    addToCart(product) {
+
     }
   },
   computed: {
@@ -120,6 +133,7 @@ export default {
     z-index: 5;
     padding: 4px;
     border-radius: 5px;
+    box-shadow: 0 0 10px -2px black;
   }
   form div {
     height: 30px;
@@ -140,8 +154,10 @@ export default {
     text-align: left;
     color: #111;
     box-shadow: 0 0 5px rgba(0, 0, 0, 1);
-    background: rgba(255, 255, 255, 0.4);
+    /* background: rgba(255, 255, 255, 0.4); */
+    background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(6px);
+    color: #fff;
   }
   .card img {
     border-radius: 0;
@@ -156,6 +172,7 @@ export default {
   .card a {
     text-decoration: none;
     color: #f61717;
+    cursor: pointer;
   }
 
 
