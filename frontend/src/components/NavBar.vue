@@ -26,7 +26,8 @@
           </ul>
           <form class="d-flex me-0" role="search" v-if="user">
             <router-link to="profile" class="nav-link">
-              <img src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/24/FFFFFF/external-user-social-media-ui-tanah-basah-basic-outline-tanah-basah.png"/>
+              <!-- <img src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/24/FFFFFF/external-user-social-media-ui-tanah-basah-basic-outline-tanah-basah.png"/> -->
+              <img :src="user.profileURL" style="border-radius: 100%;" width="24" class="me-1"/>
               {{ user.username }}
             </router-link>
           </form>
