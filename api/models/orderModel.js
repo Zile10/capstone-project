@@ -3,7 +3,9 @@ const con = require('../config')
 module.exports = {
   getOrders(req, res) {
     const orderInfo = req.body
-    con.query("SELECT * FORM orders JOIN products WHERE userID = ?;", [orderInfo.userID], (err, result) => {
+    con.query("SELECT * FROM orders AS o JOIN products AS p ON o.prodID = p.prodID WHERE userID = ?;", 
+    [orderInfo.userID],
+    (err, result) => {
       if (err) throw err;
       res.status(200);
       res.send(result);
