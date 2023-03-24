@@ -107,8 +107,10 @@ export default createStore({
 
     // Cart
     async fetchCart(context, cartData) {
+      console.log('payload is:', cartData);
       const res = await axios.get(`${apiUrl}cart`, cartData)
       const data = await res.data;
+      console.log('res is:',res);
       if (data) {
         context.commit("setCart", data);
         context.commit("setSpinner", false)
@@ -116,5 +118,6 @@ export default createStore({
     }
   },
   modules: {
+    
   }
 })

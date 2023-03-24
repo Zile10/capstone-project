@@ -25,7 +25,8 @@ export default {
   },
   created(){
     console.log(this.$store.state.user.userID);
-    this.$store.dispatch('fetchCart', {userID: this.user.userID})
+    console.log('User is: ', this.user);
+    this.$store.dispatch('fetchCart', this.user.userID)
   }
 }
 </script>
