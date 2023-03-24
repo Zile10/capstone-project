@@ -2,9 +2,13 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const bodyParser = require('body-parser')
 const {userRoutes, orderRoutes, productRoutes} = require('./routes') 
 require('dotenv').config
 const port = process.env.PORT || 6969;
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.set('port', process.env.PORT || 3000);
 app.use(express.json(), cors());

@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/orderController');
 
-router.get('/', (req, res) => {
+router.get('/:userID', (req, res) => {
   controller.getOrders(req, res)
 });
 router.post('/', (req, res) => {
