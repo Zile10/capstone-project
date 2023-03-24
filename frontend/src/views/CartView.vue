@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{ cart }}
+    <h1>{{ `${cart}` }}</h1>
   </div>
 </template>
 
@@ -19,10 +19,12 @@ export default {
       return this.$store.state.product
     },
     cart(){
+      console.log(JSON.stringify(this.$store.state.cart));
       return this.$store.state.cart
     }
   },
-  mounted(){
+  created(){
+    console.log(this.$store.state.user.userID);
     this.$store.dispatch('fetchCart', {userID: this.user.userID})
   }
 }
