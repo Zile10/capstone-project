@@ -107,7 +107,7 @@ export default createStore({
 
     // Cart
     async fetchCart(context, cartData) {
-      const res = await axios.get(`${apiUrl}orders`, cartData)
+      const res = await axios.get(`${apiUrl}cart`, cartData)
       const data = await res.data;
       if (data) {
         context.commit("setCart", data);

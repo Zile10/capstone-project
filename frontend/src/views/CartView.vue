@@ -8,7 +8,12 @@
 export default {
   computed: {
     user(){
-      return this.$store.state.user
+      if (this.$store.state.user) {
+        return this.$store.state.user
+      } else {
+        this.$store.commit('setUser', cookies.get("login_cookie").result);
+        return this.$store.state.user
+      }
     },
     product(){
       return this.$store.state.product
@@ -17,7 +22,7 @@ export default {
       return this.$store.state.cart
     }
   },
-  created(){
+  mounted(){
     this.$store.dispatch('fetchCart', {userID: this.user.userID})
   }
 }
