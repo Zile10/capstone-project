@@ -26,6 +26,7 @@ app.get('/', (req, res) => {
 // Use router to handle product and user routes
 app.use('/users', userRoutes);
 app.use('/products', productRoutes);
+app.use('/cart', orderRoutes);
 
 
 app.listen(port, () => {
