@@ -70,7 +70,7 @@
           <div class="hologram-line"></div>
           <div class="hologram-line"></div>
           <div class="hologram-line"></div> -->
-          <img src="https://publicdomainvectors.org/tn_img/planet-remix-fixed.webp" alt="">
+          <img src="https://i.postimg.cc/Yq9hkTMv/planet-remix-fixed.webp" alt="">
   
         </div>
         <!-- <img src="https://publicdomainvectors.org/tn_img/planet-remix-fixed.webp" alt=""> -->
