@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h1>{{ `${cart}` }}</h1>
+    <h1 v-for="order in cart" :key="order">
+      {{ order.prodName }}
+    </h1>
   </div>
 </template>
 
@@ -19,13 +21,10 @@ export default {
       return this.$store.state.product
     },
     cart(){
-      console.log(JSON.stringify(this.$store.state.cart));
       return this.$store.state.cart
     }
   },
   created(){
-    console.log(this.$store.state.user.userID);
-    console.log('User is: ', this.user);
     this.$store.dispatch('fetchCart', this.user.userID)
   }
 }
