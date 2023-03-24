@@ -73,5 +73,28 @@ body {
   background-position: 50% 50%;
   background-attachment: fixed;
   min-height: 100vh;
+  animation: shiftBackground 10s linear 1s infinite alternate;
+}
+
+@keyframes shiftBackground {
+  0% {
+    background-size: 100%;
+  }
+
+  25% {
+    background-size: 104%;
+  }
+  
+  50% {
+    background-size: 108%;
+  }
+
+  75% {
+    background-size: 112%;
+  }
+
+  100% {
+    background-size: 116%;
+  }
 }
 </style>

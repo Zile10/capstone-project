@@ -14,6 +14,7 @@ export default createStore({
     products: null,
     user: null,
     users: null,
+    cart: null,
     posts: null,
     token: null,
     isVerified: false,
@@ -49,9 +50,27 @@ export default createStore({
     },
     setVerified(state, data) {
       state.isVerified = data
+    },
+    setCart(state, data) {
+      state.cart = data
     }
   },
   actions: {
+    // Products
+    async fetchProduct(context, id) {
+      const res = await axios.get(`${apiUrl}product`);
+      const data = await res.data
+      context.commit("setProduct", data)
+    },
+    async fetchProducts(context) {
+      const res = await axios.get(`${apiUrl}products`);
+      const data = await res.data;
+      if (data !== undefined) {
+        context.commit("setProducts", data);
+      } else context.commit("setSpinner", true);
+    },
+
+    // Users
     async login(context, payload) {
       const res = await axios.post(`${apiUrl}users/login`, payload);
       const {result, jwToken, msg, err} = await res.data;
@@ -73,18 +92,6 @@ export default createStore({
         context.commit("setMessage", err)
       }
     },
-    async fetchProduct(context, id) {
-      const res = await axios.get(`${apiUrl}product`);
-      const data = await res.data
-      context.commit("setProduct", data)
-    },
-    async fetchProducts(context) {
-      const res = await axios.get(`${apiUrl}products`);
-      const data = await res.data;
-      if (data !== undefined) {
-        context.commit("setProducts", data);
-      } else context.commit("setSpinner", true);
-    },
     async fetchUser(context, id) {
       const res = await axios.get(`${apiUrl}user`);
       const data = await res.data
@@ -97,6 +104,11 @@ export default createStore({
         context.commit("setUsers", data);
       } else context.commit("setSpinner", true);
     },
+
+    // Cart
+    async fetchCart(context) {
+      const res = await axios.get(`${apiUrl}orders`)
+    }
   },
   modules: {
   }

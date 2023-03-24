@@ -157,6 +157,7 @@ export default {
     /* background: rgba(255, 255, 255, 0.4); */
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     color: #fff;
   }
   .card img {
