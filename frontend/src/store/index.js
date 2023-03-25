@@ -69,6 +69,14 @@ export default createStore({
         context.commit("setProducts", data);
       } else context.commit("setSpinner", true);
     },
+    async updateProduct(context, payload){
+      const res = await axios.patch(`${apiUrl}products/${payload.prodID}`, payload)
+      const {msg} = await res.data;
+      if(msg) {
+        context.commit('setMessage', msg);
+        context.dispatch('fetchProducts');
+      }
+    },
 
     // Users
     async login(context, payload) {

@@ -34,8 +34,9 @@
               style="background-color: rgba(255, 255, 255, 0); border: none"
               class="edit-item"
               data-bs-toggle="modal"
-              :data-bs-target="'#edit-' + product.prodID + '-Modal'"
-              :id="'#edit-' + product.prodID + '-Modal'"
+              :data-bs-target="'#edit-prod-' + product.prodID + '-Modal'"
+              :id="'#edit-prod-' + product.prodID + '-Modal'"
+              @click="()=>setCurrentProd(product)"
             >
               <img
                 style="height: 30px"
@@ -56,25 +57,47 @@
             </button>
           </td>
         </tr>
-        <ModalVue :id="'edit-' + product.prodID" :name="product.prodName" :imgSrc="product.imgURL" :desc="product.prodDesc">
+        <ModalVue :id="'edit-prod-' + product.prodID">
           <template #modal-header>
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">{{ product.prodName }}</h1>
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                <span>{{ product.prodID + '. ' }}</span>
+                <input type="text" class="modal-input" v-model="currentProduct.prodName">
+              </h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
           </template>
 
-          <img :src="product.imgURL" alt="" width="150">
-          <div class="info">
-            <div class="d-flex flex-column">
-              <input type="text" class="modal-input" v-bind="">
-            </div>
+          <div class="img d-flex flex-column align-items-center">
+            <img :src="product.imgURL" alt="" width="150">
+            <input type="text" class="modal-input" v-model="currentProduct.imgURL">
+          </div>
+          
+          <div class="modal-info">
+            <hr><hr>
+            <label for="currentAuthor">Author:</label>
+            <input type="text" class="modal-input" name="currentAuthor" v-model="currentProduct.author">
+            <hr><hr>
+            <label for="currentStock">Stock:</label>
+            <input type="text" class="modal-input" name="currentStock" v-model="currentProduct.stock">
+            <hr><hr>
+            <label for="currentPrice">Price:</label>
+            <input type="text" class="modal-input" name="currentPrice" v-model="currentProduct.price">
+            <hr><hr>
+            <label for="currentCategory">Category:</label>
+            <input type="text" class="modal-input" name="currentCategory" v-model="currentProduct.category">
+          </div>
+
+          <div class="modal-desc">
+            <hr>
+            <label for="currentDesc">Description:</label>
+            <textarea type="text" class="modal-input" name="currentDesc" v-model="currentProduct.prodDesc"></textarea>
           </div>
 
           <template #modal-footer>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-primary" @click="()=>updateProduct(product.prodID)">Save changes</button>
             </div>
           </template>
         </ModalVue>
@@ -156,7 +179,25 @@ export default {
   },
   data() {
     return {
-      currentProduct
+      currentProduct: {
+        prodID: '',
+        prodName: '',
+        author: '',
+        prodDesc: '',
+        price: '',
+        stock: '',
+        imgURL: '',
+        category: '',
+      }
+    }
+  },
+  methods: {
+    setCurrentProd(product){
+      this.currentProduct = product
+    },
+    updateProduct(prodID){
+      this.currentProduct.prodID= prodID
+      this.$store.dispatch('updateProduct', this.currentProduct)
     }
   },
   computed: {
@@ -192,4 +233,47 @@ export default {
     margin: auto;
     background-color: transparent;
   }
+  .modal-input, textarea {
+    color: #111;
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+  }
+  .modal-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+  .modal-info label {
+    text-align: start;
+  }
+  .modal-info input {
+    text-align: end;
+  }
+  .modal-desc textarea {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    width: 400px;
+    height: 150px;
+  }
+
+  textarea {
+    overflow: scroll;
+    overflow-x: hidden;
+  }
+  
+  textarea::-webkit-scrollbar {
+    width: 7px;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+
+  textarea::-webkit-scrollbar-thumb {
+    background-color: crimson;
+    width: 7px;
+    border-radius: 10px;
+
+  }
+
 </style>

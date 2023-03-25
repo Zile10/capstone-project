@@ -14,7 +14,7 @@
 </template>
 <script>
 export default {
-  props: ["id", "name", "imgSrc", "desc"],
+  props: ["id"],
 };
 </script>
 <style scoped>
@@ -39,24 +39,5 @@ export default {
   }
   .modal-content * {
     border: none;
-  }
-  .desc {
-    height: 150px;
-    overflow: scroll;
-    overflow-x: hidden;
-  }
-  
-  .desc::-webkit-scrollbar {
-    width: 7px;
-    height: 100%;
-    background-color: #fff;
-    border-radius: 10px;
-  }
-
-  .desc::-webkit-scrollbar-thumb {
-    background-color: crimson;
-    width: 7px;
-    border-radius: 10px;
-
   }
 </style>
