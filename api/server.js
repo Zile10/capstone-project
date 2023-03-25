@@ -6,6 +6,7 @@ const {userRoutes, orderRoutes, productRoutes} = require('./routes')
 require('dotenv').config
 const port = process.env.PORT || 6969;
 
+https.globalAgent.options.secureProtocol = 'TLSv1_2_method';
 app.set('port', process.env.PORT || 3000);
 app.use(express.json(), cors());
 
