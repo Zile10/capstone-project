@@ -112,6 +112,14 @@ export default createStore({
         context.commit("setUsers", data);
       } else context.commit("setSpinner", true);
     },
+    async updateUser(context, payload){
+      const res = await axios.patch(`${apiUrl}users/${payload.userID}`, payload)
+      const {msg} = await res.data;
+      if(msg) {
+        context.commit('setMessage', msg);
+        context.dispatch('fetchUsers');
+      }
+    },
 
     // Cart
     async fetchCart(context, userID) {

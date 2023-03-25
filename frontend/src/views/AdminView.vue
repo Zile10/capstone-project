@@ -141,7 +141,7 @@
             data-bs-toggle="modal"
             :data-bs-target="'#edit-user-' + user.userID + '-Modal'"
             :id="'#edit-prod-' + user.userID + '-Modal'"
-            @click="()=>setCurrentUser(product)"
+            @click="()=>setCurrentUser(user)"
           >
             <img
               style="height: 30px"
@@ -167,7 +167,7 @@
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="exampleModalLabel">
               <span>{{ user.userID + '. ' }}</span>
-              <input type="text" class="modal-input" v-model="currentUser.prodName">
+              <input type="text" class="modal-input" v-model="currentUser.username">
             </h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
@@ -180,9 +180,6 @@
         
         <div class="modal-info">
           <hr><hr>
-          <label for="currentUsername">Username:</label>
-          <input type="text" class="modal-input" name="currentUsername" v-model="currentUser.username">
-          <hr><hr>
           <label for="currentName">Name:</label>
           <input type="text" class="modal-input" name="currentName" v-model="currentUser.firstName">
           <hr><hr>
@@ -192,7 +189,7 @@
           <label for="currentDOB">DOB:</label>
           <input type="text" class="modal-input" name="currentDOB" v-model="currentUser.DOB">
           <hr><hr>
-          <label for="currentGenderId">Gender ID:</label>
+          <label for="currentGenderId">Gender ID (1=male, 2=female, 3=other):</label>
           <input type="text" class="modal-input" name="currentGenderId" v-model="currentUser.genderID">
           <hr><hr>
           <label for="currentContactNumber">Contact Number:</label>
@@ -204,7 +201,7 @@
           <label for="currentBannerURL">Banner URL:</label>
           <input type="text" class="modal-input" name="currentBannerURL" v-model="currentUser.bannerURL">
           <hr><hr>
-          <label for="currentRoleID">Role ID:</label>
+          <label for="currentRoleID">Role ID (1=admin, 2=moderator, 3=user):</label>
           <input type="text" class="modal-input" name="currentRoleID" v-model="currentUser.roleID">
           <hr><hr>
           <label for="currentJoinDate">Join Date:</label>
@@ -274,15 +271,15 @@ export default {
       this.currentProduct = product
     },
     updateProduct(prodID){
-      this.currentProduct.prodID= prodID
+      this.currentProduct.prodID = prodID
       this.$store.dispatch('updateProduct', this.currentProduct)
     },
     setCurrentUser(user){
       this.currentUser = user
     },
     updateUser(userID){
-      this.currentUser.userID= UserID
-      this.$store.dispatch('updateProduct', this.currentProduct)
+      this.currentUser.userID = userID
+      this.$store.dispatch('updateProduct', this.currentUser)
     },
   },
   computed: {
