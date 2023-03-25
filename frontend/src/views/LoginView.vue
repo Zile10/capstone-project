@@ -60,8 +60,7 @@ export default {
       await this.$store.commit('setSpinner', true)
       await this.$store.dispatch('login', this.payload)
       await this.$store.dispatch('fetchUsers')
-      // console.log(this.$store.state.user);
-      this.$router.push("/");
+      history.back();
     }
   },
   mounted(){

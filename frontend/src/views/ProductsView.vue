@@ -31,6 +31,10 @@
   <br>
   <SpinnerVue v-if="showSpinner"/>
   <div class="content" v-else>
+    <div v-if="cartAnimation.active" class="cart">
+      <img src="https://img.icons8.com/external-anggara-detail-outline-anggara-putra/192/FFFFFF/external-add-to-cart-retail-anggara-detail-outline-anggara-putra-2.png"/>
+      <h2 class="text-white">Item Added to Cart!</h2>
+    </div>
 
     <div class="row products-container">
   
@@ -42,7 +46,7 @@
             <p class="card-text my-0">Author: {{product.author}}</p>
             <p class="card-text my-0">Price: R{{product.price}}</p>
             <router-link :to="`products/${product.prodID}`">See more ></router-link>
-            <a @click.prevent="()=>addToCart(product.prodID)" class="ms-5">
+            <a @click.prevent="()=>addToCart(product.prodID)" class="ms-5 add-to-cart-btn">
               <img src="https://img.icons8.com/external-anggara-detail-outline-anggara-putra/48/FFFFFF/external-add-to-cart-retail-anggara-detail-outline-anggara-putra-2.png" width="30"/>
             </a>
             <!-- <a href="#" class="btn btn-primary">View Product</a> -->
@@ -66,12 +70,26 @@ export default {
       price: '',
       author: '',
       search: '',
-      order: ''
+      order: '',
+
+      cartAnimation: {
+        active: false,
+        product: {
+          imgURL: null,
+          prodName: null,
+          author: null,
+          price: null,
+        }
+      }
     }
   },
   methods: {
     addToCart(prodID) {
       let orderData = {prodID, userID: this.user.userID, qty: 1}
+      this.cartAnimation.active = true;
+      setTimeout(() => {
+        this.cartAnimation.active = false;
+      }, 1000);
       this.$store.dispatch('addToCart', orderData)
     }
   },
@@ -83,21 +101,23 @@ export default {
       return this.$store.state.products
     },
     filterItems() {
-      let filteredByCategory = this.products.filter(item => item.category == this.category || this.category == '')
-      let filteredByPrice = this.products.filter(item => item.price < this.price || this.price == '')
-      let filteredByAuthor = this.products.filter(item => item.author.trim().toLowerCase().includes(this.author.trim().toLowerCase()) || this.author == '')
-      let searched = this.products.filter(item => item.prodName.trim().toLowerCase().includes(this.search.trim().toLowerCase()));
-
-      let filtered = filteredByCategory.filter(item => filteredByPrice.includes(item) && filteredByAuthor.includes(item) && searched.includes(item))
-
-      let finalResult = filtered.sort((a, b) => {
-        return a.price - b.price;
-      });
-      // if (!state.asc) {
-      //   state.products.reverse();
-      // }
-
-      return finalResult
+      if (this.products) {
+        let filteredByCategory = this.products.filter(item => item.category == this.category || this.category == '')
+        let filteredByPrice = this.products.filter(item => item.price < this.price || this.price == '')
+        let filteredByAuthor = this.products.filter(item => item.author.trim().toLowerCase().includes(this.author.trim().toLowerCase()) || this.author == '')
+        let searched = this.products.filter(item => item.prodName.trim().toLowerCase().includes(this.search.trim().toLowerCase()));
+  
+        let filtered = filteredByCategory.filter(item => filteredByPrice.includes(item) && filteredByAuthor.includes(item) && searched.includes(item))
+  
+        let finalResult = filtered.sort((a, b) => {
+          return a.price - b.price;
+        });
+        // if (!state.asc) {
+        //   state.products.reverse();
+        // }
+  
+        return finalResult
+      }
     },
     setSpinner(){
       if(this.$store.state.products) {
@@ -176,5 +196,45 @@ export default {
     cursor: pointer;
   }
 
+  a.add-to-cart-btn:active img {
+    scale: 0.85;
+  }
 
+  .cart {
+    position: fixed;
+    top: 50%;  
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    width: 500px;
+    height: 300px;
+    border-radius: 15px;
+    padding: 20px;
+    z-index: 2;
+  }
+
+  .cart img {
+    position: relative;
+    animation: rollCart 0.5s linear;
+  }
+
+  @keyframes rollCart {
+    0% {
+      left: -100px;
+    }
+    25% {
+      left: -75px;
+    }  
+    50% {
+      left: -50px;
+    }
+    75% {
+      left: -25px;
+    }
+    100% {
+      left: 0px;
+    }
+  }
 </style>

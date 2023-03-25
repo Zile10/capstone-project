@@ -20,6 +20,9 @@
             <li class="nav-item">
               <router-link to="/products" class="nav-link">Products</router-link>
             </li>
+            <li class="nav-item">
+              <router-link to="/cart" class="nav-link">Cart</router-link>
+            </li>
             <li class="nav-item" v-if="isAdmin">
               <router-link to="/admin" class="nav-link">Admin</router-link>
             </li>

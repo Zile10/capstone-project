@@ -26,7 +26,7 @@
           <th scope="row">{{cart.indexOf(order) + 1}}</th>
           <td>{{order.prodName}}</td>
           <td>R{{order.price}}</td>
-          <td>{{order.stock}}</td>
+          <td>{{order.qty}}</td>
           <td>{{order.author}}</td>
           <td>
             <button
@@ -59,6 +59,7 @@
   
       <tfoot></tfoot>
     </table>
+    <button class="m-4">Proceed to Checkout</button>
   </div>
 </template>
 
