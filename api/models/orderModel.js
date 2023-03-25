@@ -10,9 +10,10 @@ module.exports = {
       res.send(result);
     });
   },
-  createOrder(orderData, res) {
+  createOrder(req, res) {
+    let orderData = req.body
     con.query(
-      "INSERT INTO orders set ?", 
+      "INSERT INTO orders SET ?", 
       [orderData],
       (err) => {
         if (err) throw err

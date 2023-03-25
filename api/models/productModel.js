@@ -10,7 +10,7 @@ module.exports = {
     });
   },
   getProduct(req, res) {
-    con.query("SELECT prodID, prodName, author, prodDesc, price, stock, imgURL, category FROM products WHERE productID = ?", [req.params.id], (err, result) => {
+    con.query("SELECT prodID, prodName, author, prodDesc, price, stock, imgURL, category FROM products WHERE prodID = ?", [req.params.id], (err, result) => {
       if (err) throw err;
       res.send(result[0]);
     });
@@ -22,13 +22,13 @@ module.exports = {
     })
   },
   updateProduct(req, res) {
-    con.query('UPDATE products SET ? WHERE productID = ?', [req.body, req.params.id], (err) => {
+    con.query('UPDATE products SET ? WHERE prodID = ?', [req.body, req.params.id], (err) => {
       if (err) throw err;
       res.send([req.body, {msg: "Product Updated Successfully"}])
     })
   },
   deleteProduct(req, res) {
-    con.query('DELETE FROM products WHERE productID = ?;', [req.params.id], (err) => {
+    con.query('DELETE FROM products WHERE prodID = ?;', [req.params.id], (err) => {
       if (err) throw err;
       res.send([req.body, {msg: "Product Deleted Successfully"}])
     })
