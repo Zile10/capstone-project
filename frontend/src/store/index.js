@@ -58,7 +58,7 @@ export default createStore({
   actions: {
     // Products
     async fetchProduct(context, id) {
-      const res = await axios.get(`${apiUrl}product`);
+      const res = await axios.get(`${apiUrl}products/${id}`);
       const data = await res.data
       context.commit("setProduct", data)
     },

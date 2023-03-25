@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="cart">
     <h1>Cart</h1>
-    <table class="table table-dark table-striped">
+    <table class="table table-striped">
       <thead>
         <tr>
           <th scope="col">
@@ -22,8 +22,8 @@
         </tr>
       </thead>
       <tbody v-for="order in cart" :key="order.orderID" class="products-table">
-        <tr id="item-row-{{order.orderID}}">
-          <th scope="row">{{order.orderID}}</th>
+        <tr :id="`item-row-${order.orderID}`">
+          <th scope="row">{{cart.indexOf(order) + 1}}</th>
           <td>{{order.prodName}}</td>
           <td>R{{order.price}}</td>
           <td>{{order.stock}}</td>
@@ -86,6 +86,16 @@ export default {
 }
 </script>
 
-<style>
-  
+<style scoped>
+  .cart {
+    color: white;
+  }
+  .cart table {
+    width: 80%;
+    margin: auto;
+  }
+
+  .cart th, .cart td {
+    color: white !important;
+  }
 </style>

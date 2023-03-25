@@ -41,7 +41,7 @@
             <h5 class="card-title">{{product.prodName.slice(0, 27)}} ...</h5>
             <p class="card-text my-0">Author: {{product.author}}</p>
             <p class="card-text my-0">Price: R{{product.price}}</p>
-            <router-link to="product" @click.prevent="()=>viewProduct(product)">See more ></router-link>
+            <router-link to="product" @click.prevent="()=>viewProduct(product.prodID)">See more ></router-link>
             <a @click.prevent="()=>addToCart(product)" class="ms-5">
               <img src="https://img.icons8.com/external-anggara-detail-outline-anggara-putra/48/FFFFFF/external-add-to-cart-retail-anggara-detail-outline-anggara-putra-2.png" width="30"/>
             </a>
@@ -70,7 +70,8 @@ export default {
     }
   },
   methods: {
-    viewProduct(product) {
+    async viewProduct(prodID) {
+      let product = await this.$store.dispatch('fetchProduct', prodID);
       this.$store.commit('setProduct', product);
       this.$router.push("/product");
     },
