@@ -114,9 +114,8 @@ export default createStore({
         context.commit("setSpinner", false)
       } else context.commit(setSpinner, true)
     },
-    async addToCart(context, prodID, userID){
-      const res = await axios.get(`${apiUrl}cart`, {prodID, userID})
-      const data = await res.data;
+    async addToCart(context, orderData){
+      const res = await axios.post(`${apiUrl}cart`, orderData)
       let { msg, err } = await res.data;
       if (msg) {
         context.commit("setMessage", msg);

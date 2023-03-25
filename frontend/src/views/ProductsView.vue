@@ -71,7 +71,8 @@ export default {
   },
   methods: {
     addToCart(prodID) {
-      this.$store.dispatch('addToCart', prodID, this.user.userID)
+      let orderData = {prodID, userID: this.user.userID, qty: 1}
+      this.$store.dispatch('addToCart', orderData)
     }
   },
   computed: {

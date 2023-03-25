@@ -97,4 +97,11 @@ body {
     background-size: 116%;
   }
 }
+
+@media only screen and (max-width: 750px) {
+  body {
+    background-size: cover;
+    animation: none;
+  }
+}
 </style>

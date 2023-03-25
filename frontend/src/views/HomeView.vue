@@ -5,71 +5,12 @@
         <div class="left text-start d-flex flex-column justify-content-evenly">
           <h1>Strategise to <br>Reach Your Life <br>Objectives</h1>
           <p>Stratagem will provide you with the community and the resources you'll need to take control of your life and plan your way to success!</p>
-          <div class="btns d-flex justify-content-between">
+          <div class="btns">
             <button type="button" class="btn btn-dark rounded-0 bg-black text-white" @click="toRegister">Register for Free</button>
             <button type="button" class="btn btn-light border-dark rounded-0 px-5" @click="toLogin">Login</button>
           </div>
         </div>
         <div class="right">
-          <!-- <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-  
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-  
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-  
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-  
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-  
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-  
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-  
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-  
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-  
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-  
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-  
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div>
-          <div class="hologram-line"></div> -->
           <img src="https://i.postimg.cc/Yq9hkTMv/planet-remix-fixed.webp" alt="">
   
         </div>
@@ -185,6 +126,11 @@ export default {
   width: fit-content;
 }
 
+.btns {
+  display: flex;
+  justify-content: space-between;
+}
+
 @keyframes float {
   0% {
     transform: translateY(15px);
@@ -206,4 +152,25 @@ export default {
     transform: translateY(-40px);
   }
 }
+
+@media only screen and (max-width: 720px) {
+  .hero-banner {
+    display: flex;
+  }
+  .hero-banner .right {
+    position: absolute;
+    z-index: -1;
+    margin: 0;
+  }
+  .hero-banner .right img {
+    animation: none;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .btns {
+    flex-direction: column;
+    height: 20%;
+  }
+}
+
 </style>
