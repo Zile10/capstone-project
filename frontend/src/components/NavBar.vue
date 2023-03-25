@@ -56,7 +56,7 @@ export default {
       return this.$store.state.user
     },
     isAdmin(){
-      if (this.user.userRole == 'admin') {
+      if (this.user.userRole && this.user.userRole == 'admin') {
         return true
       } else return false
     }
