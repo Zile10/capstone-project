@@ -10,7 +10,7 @@
       <div v-for="slide in slides" :key="slide" class="carousel-item" :class="{active: slide == slides[0]}">
         <img :src="slide.imgSrc" class="d-block w-100" :alt="slide.title">
         <div class="carousel-caption d-none d-md-block">
-          <h5>{{slide.title}}</h5>
+          <h4>{{slide.title}}</h4>
           <p>{{slide.description}}</p>
         </div>
       </div>
@@ -35,12 +35,7 @@ export default {
 }
 </script>
 <style>
-  /* .carousel{
-
-    width: 500px !important;
-    height: 300px !important;
+  h4, h5, p {
+    text-shadow: 0 0 5px black;
   }
-  .carousel-item {
-    max-height: 300px;
-  } */
 </style>
