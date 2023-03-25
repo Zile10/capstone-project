@@ -34,8 +34,8 @@
               style="background-color: rgba(255, 255, 255, 0); border: none"
               class="edit-item"
               data-bs-toggle="modal"
-              data-bs-target="#edit-modal-{{product.prodID}}"
-              id="edit-modal-btn-{{product.prodID}}"
+              :data-bs-target="'#edit-' + product.prodID + '-Modal'"
+              :id="'#edit-' + product.prodID + '-Modal'"
             >
               <img
                 style="height: 30px"
@@ -56,6 +56,28 @@
             </button>
           </td>
         </tr>
+        <ModalVue :id="'edit-' + product.prodID" :name="product.prodName" :imgSrc="product.imgURL" :desc="product.prodDesc">
+          <template #modal-header>
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">{{ product.prodName }}</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+          </template>
+
+          <img :src="product.imgURL" alt="" width="150">
+          <div class="info">
+            <div class="d-flex flex-column">
+              <input type="text" class="modal-input" v-bind="">
+            </div>
+          </div>
+
+          <template #modal-footer>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </template>
+        </ModalVue>
       </tbody>
   
       <tfoot></tfoot>
@@ -126,9 +148,16 @@
 
 <script>
 import SpinnerVue from '@/components/SpinnerVue.vue'
+import ModalVue from '@/components/ModalVue.vue'
 export default {
   components: {
-    SpinnerVue
+    SpinnerVue,
+    ModalVue
+  },
+  data() {
+    return {
+      currentProduct
+    }
   },
   computed: {
     products() {

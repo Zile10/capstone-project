@@ -1,6 +1,6 @@
 <template>
   <NavBar v-if="!atLoginRegister"/>
-  <main>
+  <main :class="{'removeMargin': atLoginRegister}">
     <router-view/>
   </main>
   <FooterVue v-if="!atLoginRegister"/>
@@ -64,6 +64,10 @@ main {
   min-height: 100%;
   /* height: 100%; */
   margin-top: 80px;
+}
+main.removeMargin{
+  margin-top: 0px;
+  position: relative;
 }
 body {
   /* background-image: url(https://i.postimg.cc/vTbTpzfn/earth-globe-rotating-plexus.jpg); */

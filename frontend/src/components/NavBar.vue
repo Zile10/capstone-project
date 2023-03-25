@@ -15,16 +15,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto mb-2 ps-5 mb-lg-0">
             <li class="nav-item">
-              <router-link to="/" class="nav-link">Home</router-link>
+              <router-link to="/" class="nav-link" active-class="active">Home</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/products" class="nav-link">Products</router-link>
+              <router-link to="/products" class="nav-link" active-class="active">Products</router-link>
             </li>
             <li class="nav-item">
-              <router-link to="/cart" class="nav-link">Cart</router-link>
+              <router-link to="/cart" class="nav-link" active-class="active">Cart</router-link>
             </li>
             <li class="nav-item" v-if="isAdmin">
-              <router-link to="/admin" class="nav-link">Admin</router-link>
+              <router-link to="/admin" class="nav-link" active-class="active">Admin</router-link>
             </li>
           </ul>
           <form class="d-flex me-0" role="search" v-if="user">
@@ -84,6 +84,18 @@ export default {
   }
   nav ul li a, nav div a {
     color: #fff !important;
+    font-weight: bold;
+  }
+  a.active {
+    color: #EE3434 !important;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 1);
+  }
+  a:hover, a:hover span {
+    color: #F61717 !important;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
+  }
+  .navbar-brand span {
+    text-shadow: 0 0 3px rgba(0, 0, 0, 1);
   }
   .logo-square{
     width: 30px;

@@ -1,30 +1,34 @@
 <template>
   <div class="filter-bar">
     <form class="d-flex" role="search">
-      <div>
+      <div class="d-flex">
         <label for="filterCategory" class="me-2">Category</label>
-        <select id="filterCategory" name="filterCategory" required v-model="category">
+        <select class="form-control" id="filterCategory" name="filterCategory" required v-model="category">
           <option value="" selected>Any</option>
           <option value="chess">Chess</option>
           <option value="coding">Coding</option>
           <option value="self-improvement">Self-Improvement</option>
         </select>
       </div>
-      <div>
+      <div class="d-flex">
         <label for="filterPrice" class="me-2">Price</label>
-        <select id="filterPrice" name="filterPrice" required v-model="price">
+        <select class="form-control" id="filterPrice" name="filterPrice" required v-model="price">
           <option value="" selected>Any</option>
           <option value="500">Under R500</option>
           <option value="300">Under R300</option>
         </select>
       </div>
-      <div>
-        <label for="author" class="me-2">Author</label>
-        <input type="text" name="author" v-model="author">
-      </div>
       <div class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" v-model="search">
-        <img src="https://img.icons8.com/metro/26/FFFFFF/search.png" class="me-2" style="scale: 0.8;"/>
+        <label for="author" class="me-2 my-0">
+          <img src="https://img.icons8.com/ios-filled/50/FFFFFF/open-book.png" width="20" class="my-0"/>
+        </label>
+        <input class="form-control" type="search" name="author" placeholder="Author" aria-label="Author" v-model="author">
+      </div>
+      <div class="d-flex search-box">
+        <label for="search">
+          <img src="https://img.icons8.com/metro/26/FFFFFF/search.png" class="me-2" width="25"/>
+        </label>
+        <input class="form-control me-0" type="search" placeholder="Search" aria-label="Search" name="search" v-model="search">
       </div>
     </form>
   </div>
@@ -160,6 +164,8 @@ export default {
   }
   form div > * {
     height: 100%;
+    padding: 2px;
+    padding-left: 5px;
   }
   .products-container {
     margin: 20px auto;
@@ -235,6 +241,31 @@ export default {
     }
     100% {
       left: 0px;
+    }
+  }
+
+  @media only screen and (max-width: 980px) {
+    form {
+      flex-direction: column;
+    }
+    form div {
+      height: auto;
+      margin-bottom: 2px;
+      justify-content: start;
+    }
+
+    form input, form select {
+      max-width: 100%;
+    }
+
+    /* .search-box {
+      flex-direction: row-reverse;
+    } */
+  }
+
+  @media only screen and (max-width: 370px) {
+    form {
+      top: 100px;
     }
   }
 </style>

@@ -155,44 +155,4 @@ export default {
 
   }
 
-  /* 
-  .product-profile {
-    color: white;
-    background-color: rgba(0, 0, 0, 0.5);
-    margin: 20px auto;
-    margin-bottom: 50px;
-    width: 70%;
-    height: 550px;
-    font-family: 'Courier Prime';
-    box-shadow:  -1px 1px 0px white, 1px -1px 0px white, -2px 2px 5px cyan, 2px -2px 5px cyan;
-    background: linear-gradient(135deg, transparent 45deg, rgba(0, 0, 0, 0.5) 0);
-    overflow: hidden;
-  }
-  h2 {
-    max-height: 45px;
-    overflow: hidden;
-    margin-top: 10px;
-  }
-  .img {
-    min-width: 200px;
-    min-height: 280px;
-    border: 1px solid white;
-    margin: 40px;
-    margin-bottom: 20px;
-    background-size: cover;
-    background-position: 50% 50%;
-  }
-  .data {
-    width: 100%;
-    margin: 40px;
-    margin-bottom: 20px;
-  }
-  hr {
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-    background-color: #fff;
-    opacity: 0.25;
-    height: 1.5px;
-  } */
-
 </style>

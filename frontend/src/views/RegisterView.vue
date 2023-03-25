@@ -1,7 +1,6 @@
 <template>
   <div class="register">
-    <SpinnerVue v-if="showSpinner"/>
-    <form class="register-form" @submit.prevent="registerUser" v-else>
+    <form class="register-form" @submit.prevent="registerUser">
       <button onclick="history.back()" class="back-btn">
         <img src="https://img.icons8.com/fluency-systems-filled/48/FFFFFF/long-arrow-left.png"/>
       </button>
@@ -45,7 +44,7 @@
 
       <div class="mb-2">
         <input
-          type="text"
+          type=""
           class="form-control"
           id="inputContactNumber"
           placeholder="Phone Number"
@@ -100,7 +99,10 @@
         </select>
       </div>
 
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <h5 class="">{{ msg }}</h5>
+      <button type="submit" class="btn btn-danger">Submit</button>
+      <SpinnerVue v-if="showSpinner"/>
+
     </form>
   </div>
 </template>
@@ -127,9 +129,14 @@ export default {
   },
   methods: {
     async registerUser() {
-      await this.$store.commit('setSpinner', true)
+      this.$store.commit('setSpinner', true)
+      this.$store.commit('setMessage', "Loading...")
+
       await this.$store.dispatch('register', this.payload)
+      this.$store.commit('setMessage', "Submitting User Information...")
+      
       await this.$store.dispatch('fetchUsers')
+      this.$store.commit('setMessage', "Almost Done!")
       this.$router.push("/");
     },
   },
@@ -139,14 +146,18 @@ export default {
   computed: {
     showSpinner() {
       return this.$store.state.showSpinner
+    },
+    msg(){
+      return this.$store.state.message
     }
   }
 };
 </script>
 <style>
+
 .register {
-  width: 500px;
-  margin: 70px auto;
+  max-width: 500px;
+  margin: 40px auto;
   padding: 20px;
   background-color: rgba(255, 255, 255, 0.6);
   box-shadow: 0 0 4px white;
@@ -178,4 +189,11 @@ input, select, option {
   border: none;
   border-radius: 5px;
 }
+
+@media only screen and (max-width: 720px) {
+  .register {
+    margin-top: 15px;
+  }
+}
+
 </style>
