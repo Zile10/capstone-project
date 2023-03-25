@@ -82,6 +82,14 @@ export default {
       } else return null
     }
   },
+  created(){
+    // if (!this.$store.state.products) {
+    //   history.back()
+    // }
+    let prodID = this.$route.params.prodID
+    this.$store.dispatch('fetchProduct', prodID);
+
+  },
   computed: {
     product() {
       return this.$store.state.product || {}

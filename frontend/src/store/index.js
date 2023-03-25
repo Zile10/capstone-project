@@ -106,13 +106,23 @@ export default createStore({
     },
 
     // Cart
-    async fetchCart(context, cartData) {
-      const res = await axios.get(`${apiUrl}cart/${cartData}`)
+    async fetchCart(context, userID) {
+      const res = await axios.get(`${apiUrl}cart/${userID}`)
       const data = await res.data;
       if (data) {
         context.commit("setCart", data);
         context.commit("setSpinner", false)
       } else context.commit(setSpinner, true)
+    },
+    async addToCart(context, prodID, userID){
+      const res = await axios.get(`${apiUrl}cart`, {prodID, userID})
+      const data = await res.data;
+      let { msg, err } = await res.data;
+      if (msg) {
+        context.commit("setMessage", msg);
+      } else {
+        context.commit("setMessage", err)
+      }
     }
   },
 })
