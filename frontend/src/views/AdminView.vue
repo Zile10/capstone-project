@@ -139,8 +139,9 @@
             style="background-color: rgba(255, 255, 255, 0); border: none"
             class="edit-item"
             data-bs-toggle="modal"
-            data-bs-target="#edit-modal-{{product.prodID}}"
-            id="edit-modal-btn-{{product.prodID}}"
+            :data-bs-target="'#edit-user-' + user.userID + '-Modal'"
+            :id="'#edit-prod-' + user.userID + '-Modal'"
+            @click="()=>setCurrentUser(product)"
           >
             <img
               style="height: 30px"
@@ -161,6 +162,68 @@
           </button>
         </td>
       </tr>
+      <ModalVue :id="'edit-user-' + user.userID">
+        <template #modal-header>
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              <span>{{ user.userID + '. ' }}</span>
+              <input type="text" class="modal-input" v-model="currentUser.prodName">
+            </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+        </template>
+
+        <div class="img d-flex flex-column align-items-center">
+          <img :src="user.profileURL" alt="" width="150">
+          <input type="text" class="modal-input" v-model="currentUser.profileURL">
+        </div>
+        
+        <div class="modal-info">
+          <hr><hr>
+          <label for="currentUsername">Username:</label>
+          <input type="text" class="modal-input" name="currentUsername" v-model="currentUser.username">
+          <hr><hr>
+          <label for="currentName">Name:</label>
+          <input type="text" class="modal-input" name="currentName" v-model="currentUser.firstName">
+          <hr><hr>
+          <label for="currentSurname">Surname:</label>
+          <input type="text" class="modal-input" name="currentSurname" v-model="currentUser.lastName">
+          <hr><hr>
+          <label for="currentDOB">DOB:</label>
+          <input type="text" class="modal-input" name="currentDOB" v-model="currentUser.DOB">
+          <hr><hr>
+          <label for="currentGenderId">Gender ID:</label>
+          <input type="text" class="modal-input" name="currentGenderId" v-model="currentUser.genderID">
+          <hr><hr>
+          <label for="currentContactNumber">Contact Number:</label>
+          <input type="text" class="modal-input" name="currentContactNumber" v-model="currentUser.contactNumber">
+          <hr><hr>
+          <label for="currentEmail">Email:</label>
+          <input type="text" class="modal-input" name="currentEmail" v-model="currentUser.email">
+          <hr><hr>
+          <label for="currentBannerURL">Banner URL:</label>
+          <input type="text" class="modal-input" name="currentBannerURL" v-model="currentUser.bannerURL">
+          <hr><hr>
+          <label for="currentRoleID">Role ID:</label>
+          <input type="text" class="modal-input" name="currentRoleID" v-model="currentUser.roleID">
+          <hr><hr>
+          <label for="currentJoinDate">Join Date:</label>
+          <input type="text" class="modal-input" name="currentJoinDate" v-model="currentUser.joinDate">
+        </div>
+
+        <div class="modal-desc">
+          <hr>
+          <label for="currentDesc">Description:</label>
+          <textarea type="text" class="modal-input" name="currentDesc" v-model="currentUser.userDesc"></textarea>
+        </div>
+
+        <template #modal-footer>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" @click="()=>updateUser(user.userID)">Save changes</button>
+          </div>
+        </template>
+      </ModalVue>
     </tbody>
 
     <tfoot></tfoot>
@@ -188,7 +251,22 @@ export default {
         stock: '',
         imgURL: '',
         category: '',
-      }
+      },
+      currentUser: {
+        userID: '',
+        username: '',
+        firstName: '',
+        lastName: '',
+        DOB: '',
+        genderID: '',
+        contactNumber: '',
+        email: '',
+        profileURL: '',
+        bannerURL: '',
+        userDesc: '',
+        roleID: '',
+        joinDate: '',
+      },
     }
   },
   methods: {
@@ -198,7 +276,14 @@ export default {
     updateProduct(prodID){
       this.currentProduct.prodID= prodID
       this.$store.dispatch('updateProduct', this.currentProduct)
-    }
+    },
+    setCurrentUser(user){
+      this.currentUser = user
+    },
+    updateUser(userID){
+      this.currentUser.userID= UserID
+      this.$store.dispatch('updateProduct', this.currentProduct)
+    },
   },
   computed: {
     products() {
