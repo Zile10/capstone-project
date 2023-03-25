@@ -56,14 +56,11 @@ export default {
       return this.$store.state.user
     },
     isAdmin(){
-      if (this.user.userRole && this.user.userRole == 'admin') {
+      if (this.user && this.user.userRole == 'admin') {
         return true
       } else return false
     }
   },
-  mounted(){
-    console.log(this.user.userRole == 'admin');
-  }
 }
 </script>
 <style scoped>

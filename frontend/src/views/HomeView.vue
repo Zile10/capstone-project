@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div class="logged-out" v-if="user">
+    <div class="logged-out">
       <div class="hero-banner">
         <div class="left text-start d-flex flex-column justify-content-evenly">
           <h1>Strategise to <br>Reach Your Life <br>Objectives</h1>
