@@ -17,7 +17,7 @@
           <th scope="col">Price</th>
           <th scope="col">Amount In Stock</th>
           <th scope="col">Author</th>
-          <th scope="col">Edit</th>
+          <th scope="col">Quantity</th>
           <th scope="col">Delete</th>
         </tr>
       </thead>
@@ -29,24 +29,13 @@
           <td>{{order.qty}}</td>
           <td>{{order.author}}</td>
           <td>
-            <button
-              style="background-color: rgba(255, 255, 255, 0); border: none"
-              class="edit-item"
-              data-bs-toggle="modal"
-              data-bs-target="#edit-modal-{{product.prodID}}"
-              id="edit-modal-btn-{{product.prodID}}"
-            >
-              <img
-                style="height: 30px"
-                src="https://img.icons8.com/external-kiranshastry-lineal-kiranshastry/64/FFFFFF/external-edit-interface-kiranshastry-lineal-kiranshastry.png"
-              />
-            </button>
+            <input type="number" class="qty" v-model="order.qty">
           </td>
           <td>
             <button
               style="background-color: rgba(255, 255, 255, 0); border: none"
               class="del-item"
-              onclick="itemRemove({{product.id - 1}})"
+              @click="()=>delOrder(order.orderID)"
             >
               <img
                 style="height: 30px"
@@ -65,6 +54,11 @@
 
 <script>
 export default {
+  methods: {
+    delOrder(orderID){
+        this.$store.dispatch('deleteOrder', orderID)
+    }
+  },
   computed: {
     user(){
       if (this.$store.state.user) {
@@ -98,5 +92,12 @@ export default {
 
   .cart th, .cart td {
     color: white !important;
+  }
+  .qty {
+    width: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 5px;
+    border: 2px solid crimson;
   }
 </style>

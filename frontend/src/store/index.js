@@ -121,7 +121,7 @@ export default createStore({
       }
     },
 
-    // Cart
+    // Cart/Orders
     async fetchCart(context, userID) {
       const res = await axios.get(`${apiUrl}cart/${userID}`)
       const data = await res.data;
@@ -138,6 +138,14 @@ export default createStore({
       } else {
         context.commit("setMessage", err)
       }
+    },
+    async deleteOrder(context, orderID) {
+      const res = await axios.delete(`${apiUrl}cart/${orderID}`)
+      let msg = res.data
+      if (msg) {
+        context.commit("setMessage", msg);
+      }
     }
+
   },
 })
