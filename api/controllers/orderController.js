@@ -20,7 +20,7 @@ module.exports = {
   },
   updateOrder(req, res) {
     try {
-      product.updateOrder(req, res)
+      order.updateOrder(req, res)
     } catch (error) {
       console.log(error);
       res.status(400).send(error);
@@ -28,7 +28,7 @@ module.exports = {
   },
   deleteOrder(req, res) {
     try {
-      product.deleteOrder(req, res)
+      order.deleteOrder(req, res)
     } catch (error) {
       console.log(error);
       res.status(400).send(error);
@@ -36,7 +36,7 @@ module.exports = {
   },
   deleteOrders(req, res) {
     try {
-      product.deleteOrders(req, res)
+      order.deleteOrders(req, res)
     } catch (error) {
       console.log(error);
       res.status(400).send(error);

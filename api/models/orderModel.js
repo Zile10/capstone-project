@@ -31,7 +31,7 @@ module.exports = {
   deleteOrder(req, res) {
     con.query('DELETE FROM orders WHERE orderID = ?;', [req.params.id], (err) => {
       if (err) throw err;
-      res.send([req.body, {msg: "Product Deleted Successfully"}])
+      res.send([req.body, {msg: "Order Deleted Successfully"}])
     })
   },
   deleteOrders(req, res) {
