@@ -139,13 +139,13 @@ export default createStore({
         context.commit("setMessage", err)
       }
     },
-    async deleteOrder(context, orderID) {
+    async deleteOrder(context, orderID, userID) {
       const res = await axios.delete(`${apiUrl}cart/${orderID}`)
       let msg = res.data
       if (msg) {
         context.commit("setMessage", msg);
+        context.dispatch('fetchCart', userID)
       }
     }
-
   },
 })

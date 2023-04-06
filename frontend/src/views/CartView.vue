@@ -35,7 +35,7 @@
             <button
               style="background-color: rgba(255, 255, 255, 0); border: none"
               class="del-item"
-              @click="()=>delOrder(order.orderID)"
+              @click="()=>delOrder(order.orderID, order.userID)"
             >
               <img
                 style="height: 30px"
@@ -55,8 +55,8 @@
 <script>
 export default {
   methods: {
-    delOrder(orderID){
-        this.$store.dispatch('deleteOrder', orderID)
+    delOrder(orderID, userID){
+        this.$store.dispatch('deleteOrder', orderID, userID)
     }
   },
   computed: {

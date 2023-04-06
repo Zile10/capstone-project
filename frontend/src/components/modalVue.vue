@@ -22,18 +22,15 @@ export default {
   img {
     max-width: 150px;
   }
-
   .modal {
     color: #111 !important;
   }
-
   .modal-dialog {
     background-color: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     border-radius: 16px;
   }
-
   .modal-content {
     background-color: transparent;
     border: none;

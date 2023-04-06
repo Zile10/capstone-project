@@ -231,7 +231,7 @@
 
 <script>
 import SpinnerVue from '@/components/SpinnerVue.vue'
-import ModalVue from '@/components/ModalVue.vue.js'
+import ModalVue from '@/components/ModalVue.vue'
 export default {
   components: {
     SpinnerVue,
