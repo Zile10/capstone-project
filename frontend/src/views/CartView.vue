@@ -29,7 +29,51 @@
           <td>{{order.qty}}</td>
           <td>{{order.author}}</td>
           <td>
-            <input type="number" class="qty" v-model="order.qty">
+            <ModalVue :id="'edit-prod-' + order.prodID">
+              <template #modal-header>
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">
+                    <span>{{ order.prodID + '. ' }}</span>
+                    <input type="text" class="modal-input" v-model="currentProduct.prodName">
+                  </h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+              </template>
+
+              <div class="img d-flex flex-column align-items-center">
+                <img :src="order.imgURL" alt="" width="150">
+                <input type="text" class="modal-input" v-model="currentProduct.imgURL">
+              </div>
+              
+              <div class="modal-info">
+                <hr><hr>
+                <label for="currentAuthor">Author:</label>
+                <input type="text" class="modal-input" name="currentAuthor" v-model="currentProduct.author">
+                <hr><hr>
+                <label for="currentStock">Stock:</label>
+                <input type="text" class="modal-input" name="currentStock" v-model="currentProduct.stock">
+                <hr><hr>
+                <label for="currentPrice">Price:</label>
+                <input type="text" class="modal-input" name="currentPrice" v-model="currentProduct.price">
+                <hr><hr>
+                <label for="currentCategory">Category:</label>
+                <input type="text" class="modal-input" name="currentCategory" v-model="currentProduct.category">
+              </div>
+
+              <div class="modal-desc">
+                <hr>
+                <label for="currentDesc">Description:</label>
+                <textarea type="text" class="modal-input" name="currentDesc" v-model="currentProduct.prodDesc"></textarea>
+              </div>
+
+              <template #modal-footer>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" @click="()=>updateProduct(product.prodID)">Save changes</button>
+                </div>
+              </template>
+            </ModalVue>
+
           </td>
           <td>
             <button
@@ -53,10 +97,26 @@
 </template>
 
 <script>
+import ModalVue from '@/components/ModalVue.vue'
 export default {
+  components: {
+    ModalVue
+  },
+  data() {
+    return {
+      currentOrder: {
+        orderData: {
+          prodName: '',
+          price: '',
+          qty: '',
+          author: '',
+        },
+      }
+    }
+  },
   methods: {
     delOrder(orderID, userID){
-        this.$store.dispatch('deleteOrder', orderID, userID)
+      this.$store.dispatch('deleteOrder', orderID, userID)
     }
   },
   computed: {
